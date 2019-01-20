@@ -22,6 +22,7 @@ pipeline {
             }
             post {
                 always {
+                    sh 'cd /root/.jenkins/workspace/simple-python-pyinstaller-app/jenkins-sub-dir'
                     junit 'test-reports/results.xml'
                 }
             }

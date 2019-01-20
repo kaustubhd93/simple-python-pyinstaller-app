@@ -11,20 +11,5 @@ pipeline {
                 sh 'cd /root/.jenkins/workspace/simple-python-pyinstaller-app/jenkins-sub-dir;python -m py_compile sources/add2vals.py sources/calc.py'
             }
         }
-        stage('Test') {
-            agent {
-                docker {
-                    image 'qnib/pytest'
-                }
-            }
-            steps {
-                sh 'cd /root/.jenkins/workspace/simple-python-pyinstaller-app/jenkins-sub-dir;py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
-            }
-            post {
-                always {
-                    junit '/root/.jenkins/workspace/simple-python-pyinstaller-app/jenkins-sub-dir/test-reports/results.xml'
-                }
-            }
-        }
     }
 }
